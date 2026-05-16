@@ -1,21 +1,22 @@
 # 03 - Static Frontend With Nginx
 
-This example shows how to serve static frontend files from an Nginx container.
+This module shows how to serve static frontend files from an Nginx container.
 
-This pattern is useful for:
+This pattern is useful for production builds from:
 
 - Angular
 - Ionic Angular
 - React
 - Vue
-- Any static production build
+- Static HTML/CSS projects
 
-## What This Teaches
+## What This Module Covers
 
 - Serving static frontend files with Nginx
-- Writing a simple Nginx config
-- Containerising frontend output
-- Preparing frontend apps for cloud deployment
+- Writing a simple Nginx configuration
+- Building a frontend container image
+- Running a static site locally through Docker
+- Connecting frontend containerisation to cloud deployment preparation
 
 ## Run With Docker
 
@@ -37,10 +38,17 @@ Open:
 http://localhost:8080
 ```
 
-Stop and remove:
+## Cleanup
+
+Stop the container:
 
 ```bash
 docker stop static-frontend
+```
+
+Remove the container:
+
+```bash
 docker rm static-frontend
 ```
 
@@ -53,4 +61,4 @@ npm install
 npm run build
 ```
 
-Then the generated production files are copied into the Nginx image. For Angular this is usually the `dist/` folder.
+The generated production files are then copied into the Nginx image. For Angular, this is usually the `dist/` folder.

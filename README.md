@@ -1,74 +1,63 @@
 # Docker Cloud Deployment Guide
 
-A step-by-step Docker learning project showing how to containerise applications, run multi-service apps locally, and prepare projects for cloud deployment.
+This repository is a hands-on Docker learning project focused on containerising applications, running services locally with Docker Compose, and connecting Docker workflows to cloud deployment concepts.
 
-This repository was created to strengthen practical Docker, DevOps, and cloud deployment skills through small reproducible examples.
+The project is organised as a short learning path. Each module introduces one practical Docker concept and includes runnable code, commands, cleanup steps, and screenshots.
 
-## Project Goals
+## Learning Outcomes
 
-- Build Docker images from simple applications
-- Run containers locally with exposed ports
-- Use Docker Compose for app and database services
-- Understand environment variables and volumes
+By working through this project, I practised how to:
+
+- Build Docker images from Dockerfiles
+- Run application containers locally
+- Map container ports to localhost
+- Use Docker Compose for multi-container applications
+- Connect a Node.js API to PostgreSQL
+- Use service names, environment variables, health checks, and volumes
 - Serve static frontend files with Nginx
-- Connect Docker workflows to cloud deployment concepts
-- Document troubleshooting steps clearly
+- Document cloud deployment concepts using App Engine and Cloud Build notes
+- Troubleshoot common Docker issues using logs and container status
 
-## Tech Stack
+## Learning Path
 
-- Docker
-- Docker Compose
-- Node.js
-- Express
-- PostgreSQL
-- Nginx
-- HTML/CSS
-- Google Cloud deployment concepts
+| Module | Topic | What It Demonstrates |
+|---|---|---|
+| 01 | Basic Node.js Docker App | Dockerfile, image build, container run, health endpoint |
+| 02 | Docker Compose + PostgreSQL | API + database, service networking, volumes, health checks |
+| 03 | Static Frontend with Nginx | Frontend hosting using an Nginx container |
+| 04 | Cloud Deployment Notes | App Engine, Cloud Build, and Docker troubleshooting |
+| 05 | Capstone Checklist | How the modules connect to a cloud-ready application |
 
 ## Repository Structure
 
 ```text
 docker-cloud-deployment-guide/
   01-basic-node-app/
-    Dockerfile
-    server.js
-    package.json
-    README.md
   02-docker-compose-postgres/
-    app/
-      Dockerfile
-      server.js
-      package.json
-    docker-compose.yml
-    init.sql
-    README.md
   03-static-frontend-nginx/
-    Dockerfile
-    nginx.conf
-    src/
-      index.html
-      styles.css
-    README.md
   04-cloud-deployment-notes/
-    gcp-app-engine.md
-    cloud-build.md
-    troubleshooting.md
+  05-capstone-cloud-ready-app/
+  docs/
   screenshots/
 ```
 
-## Examples
+## Study Notes
 
-### 01 - Basic Node.js Docker App
+- [Docker command cheat sheet](docs/docker-command-cheatsheet.md)
+- [Docker glossary](docs/docker-glossary.md)
+- [Capstone cloud-ready app checklist](05-capstone-cloud-ready-app/README.md)
+
+## Module 01 - Basic Node.js Docker App
 
 A minimal Express API containerised with a Dockerfile.
 
-Skills shown:
+Skills practised:
 
 - Dockerfile basics
 - Image builds
 - Container runs
 - Port mapping
-- Health endpoint
+- Health endpoints
 
 Run:
 
@@ -78,17 +67,23 @@ docker build -t basic-node-docker-app .
 docker run --name basic-node-app -p 3000:3000 basic-node-docker-app
 ```
 
-### 02 - Docker Compose With PostgreSQL
+Open:
+
+```text
+http://localhost:3000/health
+```
+
+## Module 02 - Docker Compose With PostgreSQL
 
 A Node.js API connected to a PostgreSQL database using Docker Compose.
 
-Skills shown:
+Skills practised:
 
-- Multi-container setup
-- Service networking
-- Environment variables
-- Database volumes
-- Health checks
+- Multi-container applications
+- Docker Compose services
+- API-to-database communication
+- PostgreSQL container setup
+- Health checks and database volumes
 
 Run:
 
@@ -101,18 +96,19 @@ Open:
 
 ```text
 http://localhost:3001/roles
+http://localhost:3001/health
 ```
 
-### 03 - Static Frontend With Nginx
+## Module 03 - Static Frontend With Nginx
 
 A static frontend served from an Nginx container.
 
-Skills shown:
+Skills practised:
 
 - Nginx static hosting
 - Frontend containerisation
-- Production-style serving
-- Pattern for Angular/Ionic deployment
+- Production-style static file serving
+- Deployment pattern for Angular, Ionic, React, or Vue builds
 
 Run:
 
@@ -146,76 +142,36 @@ http://localhost:8080
 
 ![Static frontend served with Nginx](screenshots/04-nginx-frontend.png)
 
-## What I Learned
+## Docker Concepts Practised
 
-- Docker images package application code and dependencies.
-- Containers run applications consistently across environments.
-- Docker Compose is useful for local multi-service applications.
-- Service names such as `db` allow containers to communicate on the same Compose network.
-- Volumes keep database data after containers stop.
-- Nginx can serve production frontend files in a lightweight container.
-- Cloud deployments often build on the same concepts: reproducible builds, configuration files, environment variables, and deployment pipelines.
+- Images package application code and dependencies.
+- Containers run applications in isolated environments.
+- Dockerfiles define repeatable image build steps.
+- Port mappings expose container services on localhost.
+- Docker Compose runs related services together.
+- Service names allow containers to communicate within the same Compose network.
+- Volumes preserve database data beyond a container lifecycle.
+- Nginx can serve static frontend builds in a lightweight container.
 
-## Common Commands
+## Cloud Deployment Connection
 
-List running containers:
+The local Docker workflows in this project connect to cloud deployment concepts:
 
-```bash
-docker ps
-```
-
-List all containers:
-
-```bash
-docker ps -a
-```
-
-List images:
-
-```bash
-docker images
-```
-
-Stop a container:
-
-```bash
-docker stop container-name
-```
-
-Remove a container:
-
-```bash
-docker rm container-name
-```
-
-Remove an image:
-
-```bash
-docker rmi image-name
-```
-
-View logs:
-
-```bash
-docker logs container-name
-```
+- Dockerfiles support repeatable builds.
+- Compose files help model app, database, and service dependencies.
+- Health endpoints support deployment checks.
+- Environment variables separate configuration from code.
+- Cloud Build and App Engine workflows use similar ideas around build steps, configuration files, and deployment automation.
 
 ## Portfolio Value
 
-This project demonstrates practical graduate-level DevOps and cloud readiness:
-
-- Docker
-- Docker Compose
-- Cloud deployment preparation
-- CI/CD concepts
-- Backend and database services
-- Frontend deployment patterns
-- Technical documentation
+This project demonstrates practical graduate-level exposure to Docker, Docker Compose, backend services, frontend hosting, cloud deployment preparation, troubleshooting, and technical documentation.
 
 ## Future Improvements
 
-- Add GitHub Actions for automated Docker builds
-- Add a simple API test script
-- Add a Cloud Run deployment example
-- Add screenshots and architecture diagrams
-- Add a `.env.example` file for environment-based configuration
+- Add GitHub Actions for automated Docker checks
+- Add a `.env.example` file
+- Add API tests
+- Add an architecture diagram
+- Add Cloud Run deployment notes
+- Extend the capstone into a full frontend + API + database Compose project
