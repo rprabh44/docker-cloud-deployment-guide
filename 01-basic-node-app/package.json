@@ -1,0 +1,12 @@
+{
+  "name": "basic-node-docker-app",
+  "version": "1.0.0",
+  "description": "A minimal Node.js application used to learn Docker image builds and container runs.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}
