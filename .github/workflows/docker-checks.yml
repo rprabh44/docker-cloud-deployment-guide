@@ -1,0 +1,24 @@
+name: Docker Checks
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  docker-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build basic Node.js Docker image
+        run: docker build -t basic-node-docker-app ./01-basic-node-app
+
+      - name: Validate Docker Compose configuration
+        run: docker compose -f ./02-docker-compose-postgres/docker-compose.yml config
+
+      - name: Build static frontend Nginx image
+        run: docker build -t static-frontend-nginx ./03-static-frontend-nginx
