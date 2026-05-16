@@ -41,6 +41,17 @@ docker-cloud-deployment-guide/
   screenshots/
 ```
 
+## Architecture Overview
+
+```mermaid
+flowchart LR
+  Browser["Browser / localhost"] --> Frontend["Nginx Static Frontend"]
+  Browser --> API["Node.js API"]
+  API --> Database["PostgreSQL Database"]
+  API --> Health["/health endpoint"]
+  API --> Roles["/roles endpoint"]
+```
+
 ## Study Notes
 
 - [Docker command cheat sheet](docs/docker-command-cheatsheet.md)
@@ -172,6 +183,5 @@ This project demonstrates practical graduate-level exposure to Docker, Docker Co
 - Add GitHub Actions for automated Docker checks
 - Add a `.env.example` file
 - Add API tests
-- Add an architecture diagram
 - Add Cloud Run deployment notes
 - Extend the capstone into a full frontend + API + database Compose project
